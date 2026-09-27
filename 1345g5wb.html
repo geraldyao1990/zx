@@ -307,7 +307,7 @@
                 <span id="seconds">00</span>秒
             </div>
             <div id="serverOpened" class="server-open" style="display: none;">
-                 刚刚开区，欢迎体验！
+                 稳定运营中，欢迎体验！
             </div>
         </div>
 
@@ -326,6 +326,41 @@
 
             </div>
         </section> 
+		
+		    <script>
+        // 设置目标日期时间（修改这里可以调整倒计时）
+        const targetDate = new Date("2026-09-25T18:00:00").getTime();
+
+        // 更新倒计时的函数
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+
+            if (distance > 0) {
+                // 计算剩余时间
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                // 更新DOM元素
+                document.getElementById("days").innerText = days.toString().padStart(2, '0');
+                document.getElementById("hours").innerText = hours.toString().padStart(2, '0');
+                document.getElementById("minutes").innerText = minutes.toString().padStart(2, '0');
+                document.getElementById("seconds").innerText = seconds.toString().padStart(2, '0');
+            } else {
+                // 倒计时结束，显示服务器已开启
+                document.getElementById("countdown").style.display = "none";
+                document.getElementById("serverOpened").style.display = "block";
+            }
+        }
+
+        // 初始更新
+        updateCountdown();
+
+        // 每秒更新一次
+        setInterval(updateCountdown, 1000);
+    </script>
 
         <!-- 重要提示 -->
         <section class="section notice">
@@ -575,39 +610,6 @@
         </footer>
     </div>
 
-    <script>
-        // 设置目标日期时间（修改这里可以调整倒计时）
-        const targetDate = new Date("2026-09-25T18:00:00").getTime();
 
-        // 更新倒计时的函数
-        function updateCountdown() {
-            const now = new Date().getTime();
-            const distance = targetDate - now;
-
-            if (distance > 0) {
-                // 计算剩余时间
-                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-                // 更新DOM元素
-                document.getElementById("days").innerText = days.toString().padStart(2, '0');
-                document.getElementById("hours").innerText = hours.toString().padStart(2, '0');
-                document.getElementById("minutes").innerText = minutes.toString().padStart(2, '0');
-                document.getElementById("seconds").innerText = seconds.toString().padStart(2, '0');
-            } else {
-                // 倒计时结束，显示服务器已开启
-                document.getElementById("countdown").style.display = "none";
-                document.getElementById("serverOpened").style.display = "block";
-            }
-        }
-
-        // 初始更新
-        updateCountdown();
-
-        // 每秒更新一次
-        setInterval(updateCountdown, 1000);
-    </script>
 </body>
 </html>
